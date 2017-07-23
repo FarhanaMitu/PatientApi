@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
  
-  before_action :authenticate
+  before_action :authenticate unless Rails.env == "test"
  
   def authenticate
     authenticate_token || render_unauthorized
